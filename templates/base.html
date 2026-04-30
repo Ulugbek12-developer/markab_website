@@ -1,0 +1,41 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="uz">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>{% block title %}Markab - iPhone Bozor{% endblock %}</title>
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+    <!-- Meta tags for SEO -->
+    <meta name="description" content="Markab - iPhone sotib olish va sotish uchun premium platforma.">
+</head>
+<body>
+    <header>
+        <h1>MARKAB</h1>
+        <a href="{% url 'phones:search' %}" style="color: white; text-decoration: none; font-size: 20px;">🔍</a>
+    </header>
+
+    <main>
+        {% block content %}{% endblock %}
+    </main>
+
+    <nav class="bottom-nav">
+        <a href="{% url 'phones:home' %}" class="nav-item {% if request.resolver_match.url_name == 'home' %}active{% endif %}">
+            <span class="nav-icon">🏠</span>
+            <span>Asosiy</span>
+        </a>
+        <a href="{% url 'phones:filter' %}" class="nav-item {% if request.resolver_match.url_name == 'filter' %}active{% endif %}">
+            <span class="nav-icon">🎛️</span>
+            <span>Filter</span>
+        </a>
+        <a href="{% url 'users:sell' %}" class="nav-item {% if request.resolver_match.url_name == 'sell' %}active{% endif %}">
+            <span class="nav-icon">➕</span>
+            <span>Sotish</span>
+        </a>
+        <a href="{% url 'users:profile' %}" class="nav-item {% if request.resolver_match.url_name == 'profile' %}active{% endif %}">
+            <span class="nav-icon">👤</span>
+            <span>Profil</span>
+        </a>
+    </nav>
+</body>
+</html>

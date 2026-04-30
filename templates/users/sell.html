@@ -1,0 +1,66 @@
+{% extends 'base.html' %}
+
+{% block title %}Sotish - Markab{% endblock %}
+
+{% block content %}
+<div class="container">
+    <h2>Telefoningizni soting</h2>
+    <p style="margin-bottom: 20px;">Ma'lumotlarni to'ldiring va biz uni saytga chiqaramiz.</p>
+
+    <form method="POST" enctype="multipart/form-data" class="card">
+        {% csrf_token %}
+        <div class="form-group">
+            <label>Model</label>
+            <select name="model" required>
+                <option value="11">iPhone 11</option>
+                <option value="12">iPhone 12</option>
+                <option value="13">iPhone 13</option>
+                <option value="14">iPhone 14</option>
+                <option value="15">iPhone 15</option>
+                <option value="15 Pro Max">iPhone 15 Pro Max</option>
+            </select>
+        </div>
+
+        <div class="form-group">
+            <label>Xotira</label>
+            <select name="memory">
+                <option value="64">64 GB</option>
+                <option value="128">128 GB</option>
+                <option value="256">256 GB</option>
+                <option value="512">512 GB</option>
+            </select>
+        </div>
+
+        <div class="form-group">
+            <label>Batareya holati (%)</label>
+            <input type="number" name="battery" placeholder="95" required>
+        </div>
+
+        <div class="form-group">
+            <label>Holati</label>
+            <select name="condition">
+                <option value="ideal">Ideal</option>
+                <option value="medium">Yaxshi</option>
+                <option value="bad">Yomon</option>
+            </select>
+        </div>
+
+        <div class="form-group">
+            <label>Siz aytgan narx (so'm)</label>
+            <input type="number" name="price" placeholder="7 000 000" required>
+        </div>
+
+        <div class="form-group">
+            <label>Rasm yuklash</label>
+            <input type="file" name="image" accept="image/*">
+        </div>
+
+        <div class="form-group">
+            <label>Aloqa uchun telefon</label>
+            <input type="tel" name="phone" placeholder="+998" required>
+        </div>
+
+        <button type="submit" class="btn btn-primary">E'lonni yuborish</button>
+    </form>
+</div>
+{% endblock %}

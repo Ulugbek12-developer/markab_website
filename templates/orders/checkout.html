@@ -1,0 +1,50 @@
+{% extends 'base.html' %}
+
+{% block title %}Checkout - Markab{% endblock %}
+
+{% block content %}
+<div class="container">
+    <h2>Sotib olish</h2>
+    
+    <div class="card" style="display: flex; gap: 12px; align-items: center;">
+        {% if phone.image %}
+        <img src="{{ phone.image.url }}" style="width: 60px; height: 60px; border-radius: 8px; object-fit: cover;">
+        {% endif %}
+        <div>
+            <h3 style="font-size: 16px;">{{ phone.get_model_name_display }}</h3>
+            <p class="price-tag" style="font-size: 14px;">{{ phone.price }} so'm</p>
+        </div>
+    </div>
+
+    <form method="POST" class="card">
+        {% csrf_token %}
+        <div class="form-group">
+            <label>F.I.O</label>
+            <input type="text" name="name" placeholder="Ismingizni kiriting" required>
+        </div>
+
+        <div class="form-group">
+            <label>Telefon raqam</label>
+            <input type="tel" name="phone" placeholder="+998 00 000 00 00" required>
+        </div>
+
+        <div class="form-group" style="display: flex; align-items: center; gap: 10px;">
+            <input type="checkbox" name="is_installment" id="inst_check" style="width: 20px;">
+            <label for="inst_check" style="margin: 0;">Muddatli to'lovga olish</label>
+        </div>
+
+        <div class="form-group">
+            <label>Muddat (oy)</label>
+            <select name="months">
+                <option value="">Naqd (to'liq to'lov)</option>
+                <option value="3">3 oy</option>
+                <option value="6">6 oy</option>
+                <option value="12">12 oy</option>
+            </select>
+        </div>
+
+        <button type="submit" class="btn btn-primary">Buyurtma berish</button>
+        <p style="text-align: center; margin-top: 12px; font-size: 12px;">Operatorimiz 15 daqiqa ichida aloqaga chiqadi.</p>
+    </form>
+</div>
+{% endblock %}

@@ -1,0 +1,45 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+<div class="container">
+    <div class="filter-chips">
+        <a href="?" class="chip {% if not request.GET.model %}active{% endif %}">Barchasi</a>
+        <a href="?model=13 Pro" class="chip {% if request.GET.model == '13 Pro' %}active{% endif %}">iPhone 13 Pro</a>
+        <a href="?model=14 Pro" class="chip {% if request.GET.model == '14 Pro' %}active{% endif %}">iPhone 14 Pro</a>
+        <a href="?model=15 Pro Max" class="chip {% if request.GET.model == '15 Pro Max' %}active{% endif %}">iPhone 15 Pro Max</a>
+        <a href="{% url 'phones:calculator' %}" class="chip" style="background: var(--primary-gradient); color: white; border: none;">🧮 Kalkulyator</a>
+    </div>
+
+    <h2 style="margin-top: 10px;">Yangi e'lonlar</h2>
+    
+    <div class="grid">
+        {% for phone in phones %}
+        <a href="{% url 'phones:detail' phone.pk %}" class="card">
+            {% if phone.image %}
+            <img src="{{ phone.image.url }}" alt="{{ phone.model_name }}" class="phone-img">
+            {% else %}
+            <div class="phone-img skeleton"></div>
+            {% endif %}
+            
+            <div style="display: flex; justify-content: space-between; align-items: flex-start;">
+                <div>
+                    <h3 style="font-size: 18px; margin-bottom: 4px;">{{ phone.get_model_name_display }}</h3>
+                    <p>{{ phone.memory }}GB • {{ phone.battery_health }}% • {{ phone.condition|title }}</p>
+                </div>
+                <div class="price-tag">{{ phone.price }} so'm</div>
+            </div>
+            
+            <div style="margin-top: 12px;">
+                <span class="badge badge-blue">Kafolat bor</span>
+                <span class="badge">{{ phone.region }}</span>
+            </div>
+        </a>
+        {% empty %}
+        <div class="empty-state">
+            <p>Hozircha e'lonlar yo'q.</p>
+        </div>
+        {% endfor %}
+    </div>
+</div>
+{% endblock %}

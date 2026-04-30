@@ -1,0 +1,40 @@
+{% extends 'base.html' %}
+
+{% block title %}Profil - Markab{% endblock %}
+
+{% block content %}
+<div class="container">
+    <div style="text-align: center; margin-bottom: 30px; margin-top: 20px;">
+        <div style="width: 80px; height: 80px; background-color: #2C2C2E; border-radius: 50%; margin: 0 auto 10px; display: flex; align-items: center; justify-content: center; font-size: 40px;">👤</div>
+        <h2>Mening Profilim</h2>
+    </div>
+
+    <div class="grid">
+        <div class="card" style="text-align: center;">
+            <h1 style="color: var(--accent-color);">{{ listings_count }}</h1>
+            <p>Mening e'lonlarim</p>
+        </div>
+        <div class="card" style="text-align: center;">
+            <h1 style="color: var(--accent-color);">{{ orders_count }}</h1>
+            <p>Mening buyurtmalarim</p>
+        </div>
+    </div>
+
+    <div style="margin-top: 20px;">
+        <a href="#" class="card" style="display: flex; justify-content: space-between; align-items: center;">
+            <span>Sozlamalar</span>
+            <span>❯</span>
+        </a>
+        <a href="#" class="card" style="display: flex; justify-content: space-between; align-items: center;">
+            <span>Yordam markazi</span>
+            <span>❯</span>
+        </a>
+        <a href="#" class="card" style="display: flex; justify-content: space-between; align-items: center; color: #FF453A;">
+            <span>Chiqish</span>
+            <span>❯</span>
+        </a>
+    </div>
+
+    <p style="text-align: center; margin-top: 40px; color: #3A3A3C;">Markab v1.0.0</p>
+</div>
+{% endblock %}

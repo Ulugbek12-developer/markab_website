@@ -1,0 +1,79 @@
+{% extends 'base.html' %}
+
+{% block title %}{{ phone.get_model_name_display }} - Markab{% endblock %}
+
+{% block content %}
+<div class="container">
+    {% if phone.image %}
+    <img src="{{ phone.image.url }}" alt="{{ phone.model_name }}" class="phone-img" style="height: 300px;">
+    {% else %}
+    <div class="phone-img skeleton" style="height: 300px;"></div>
+    {% endif %}
+
+    <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px;">
+        <h2 style="margin: 0;">{{ phone.get_model_name_display }}</h2>
+        <div class="price-tag" style="font-size: 24px;">{{ phone.price }} so'm</div>
+    </div>
+
+    <div class="card">
+        <h4 style="margin-bottom: 12px; color: var(--text-secondary);">Xususiyatlari</h4>
+        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 12px;">
+            <div>
+                <p>Xotira</p>
+                <strong>{{ phone.memory }} GB</strong>
+            </div>
+            <div>
+                <p>Batareya</p>
+                <strong>{{ phone.battery_health }}%</strong>
+            </div>
+            <div>
+                <p>Holati</p>
+                <strong>{{ phone.condition|title }}</strong>
+            </div>
+            <div>
+                <p>Region</p>
+                <strong>{{ phone.region|default:"Noma'lum" }}</strong>
+            </div>
+            <div>
+                <p>Karobka</p>
+                <strong>{% if phone.has_box %}Bor{% else %}Yo'q{% endif %}</strong>
+            </div>
+            <div>
+                <p>Rang</p>
+                <strong>{{ phone.color|default:"Noma'lum" }}</strong>
+            </div>
+        </div>
+    </div>
+
+    {% if phone.description %}
+    <div class="card">
+        <h4 style="margin-bottom: 8px; color: var(--text-secondary);">Tavsif</h4>
+        <p style="color: var(--text-primary);">{{ phone.description }}</p>
+    </div>
+    {% endif %}
+
+    <!-- Installment Section -->
+    <div class="card">
+        <h4 style="margin-bottom: 12px; color: var(--accent-color);">Muddatli to'lov</h4>
+        <p style="margin-bottom: 16px;">Boshlang'ich to'lov (30%): <strong>{{ installment.initial|floatformat:0 }} so'm</strong></p>
+        
+        <table style="width: 100%; border-collapse: collapse; text-align: center;">
+            <tr style="color: var(--text-secondary); font-size: 12px;">
+                <th style="padding: 8px;">3 OY</th>
+                <th style="padding: 8px;">6 OY</th>
+                <th style="padding: 8px;">12 OY</th>
+            </tr>
+            <tr style="font-size: 16px; font-weight: 700;">
+                <td style="padding: 8px;">{{ installment.m3 }}</td>
+                <td style="padding: 8px;">{{ installment.m6 }}</td>
+                <td style="padding: 8px;">{{ installment.m12 }}</td>
+            </tr>
+        </table>
+    </div>
+
+    <div style="display: flex; gap: 10px; margin-top: 20px;">
+        <a href="{% url 'orders:checkout' phone.pk %}" class="btn btn-primary" style="flex: 2;">Sotib olish</a>
+        <a href="tel:{{ phone.seller_phone }}" class="btn btn-secondary" style="flex: 1;">📞</a>
+    </div>
+</div>
+{% endblock %}

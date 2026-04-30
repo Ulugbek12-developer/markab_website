@@ -1,0 +1,39 @@
+{% extends 'base.html' %}
+
+{% block title %}Qidiruv - Markab{% endblock %}
+
+{% block content %}
+<div class="container">
+    <form method="GET" action="{% url 'phones:search' %}" style="margin-bottom: 20px;">
+        <div style="position: relative;">
+            <input type="text" name="q" value="{{ request.GET.q }}" placeholder="Modelni kiriting (masalan: 13 Pro)..." autofocus>
+            <button type="submit" style="position: absolute; right: 10px; top: 50%; transform: translateY(-50%); background: none; border: none; font-size: 20px;">🔍</button>
+        </div>
+    </form>
+
+    {% if request.GET.q %}
+    <h3>"{{ request.GET.q }}" bo'yicha natijalar:</h3>
+    <div class="grid" style="margin-top: 15px;">
+        {% for phone in phones %}
+        <a href="{% url 'phones:detail' phone.pk %}" class="card">
+            <div style="display: flex; justify-content: space-between;">
+                <div>
+                    <h3 style="font-size: 16px;">{{ phone.get_model_name_display }}</h3>
+                    <p>{{ phone.memory }}GB • {{ phone.battery_health }}%</p>
+                </div>
+                <div class="price-tag">{{ phone.price }}</div>
+            </div>
+        </a>
+        {% empty %}
+        <div class="empty-state">
+            <p>Hech narsa topilmadi. Boshqa kalit so'z bilan urinib ko'ring.</p>
+        </div>
+        {% endfor %}
+    </div>
+    {% else %}
+    <div class="empty-state">
+        <p>Qidirmoqchi bo'lgan modelni kiriting.</p>
+    </div>
+    {% endif %}
+</div>
+{% endblock %}
