@@ -25,7 +25,8 @@ SECRET_KEY = 'django-insecure-94nng-4qh43jq4!n+&clw=-zz81z5+)x+!+zq^t-qn&scmq0kh
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True # O'zingiz tekshirib olishingiz uchun hozircha True qoldiramiz
 
-ALLOWED_HOSTS = ['markabelectronica.pythonanywhere.com', 'localhost', '127.0.0.1']
+ALLOWED_HOSTS = ['markab.pythonanywhere.com', 'localhost', '127.0.0.1']
+
 
 
 
