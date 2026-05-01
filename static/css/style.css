@@ -4,24 +4,17 @@
     --dark-bg: #000000;
     --dark-card: #111111;
     --dark-border: #222222;
-    --text-white: #FFFFFF;
-    --text-gray: #9CA3AF;
-}
-
-* {
-    box-sizing: border-box;
-    margin: 0;
-    padding: 0;
 }
 
 body {
     background-color: var(--dark-bg);
-    color: var(--text-white);
-    font-family: 'Inter', sans-serif;
-    line-height: 1.6;
+    color: white;
+    margin: 0;
+    padding: 0;
+    overflow-x: hidden;
 }
 
-/* Glassmorphism */
+/* Glassmorphism utility */
 .glass {
     background: rgba(255, 255, 255, 0.03);
     backdrop-filter: blur(12px);
@@ -29,63 +22,19 @@ body {
     border: 1px solid rgba(255, 255, 255, 0.05);
 }
 
-/* Custom Buttons */
-.btn-premium {
-    background-color: var(--brand-color);
-    color: white;
-    padding: 12px 24px;
-    border-radius: 9999px;
-    font-weight: 700;
-    text-align: center;
-    transition: all 0.3s ease;
-    border: none;
-    cursor: pointer;
-    text-decoration: none;
-    display: inline-block;
+/* Custom scrollbar */
+::-webkit-scrollbar {
+    width: 6px;
 }
-
-.btn-premium:hover {
-    background-color: var(--brand-hover);
-    transform: translateY(-2px);
-    box-shadow: 0 10px 20px -5px rgba(195, 39, 77, 0.5);
+::-webkit-scrollbar-track {
+    background: #000;
 }
-
-/* Cards */
-.premium-card {
-    background: var(--dark-card);
-    border: 1px solid var(--dark-border);
-    border-radius: 24px;
-    padding: 24px;
-    transition: all 0.3s ease;
+::-webkit-scrollbar-thumb {
+    background: #222;
+    border-radius: 10px;
 }
-
-.premium-card:hover {
-    border-color: var(--brand-color);
-    box-shadow: 0 0 30px rgba(195, 39, 77, 0.1);
-}
-
-/* Inputs */
-input, select, textarea {
-    background: #0A0A0A;
-    border: 1px solid #222;
-    border-radius: 12px;
-    padding: 12px 16px;
-    color: white;
-    outline: none;
-    transition: border-color 0.3s;
-}
-
-input:focus {
-    border-color: var(--brand-color);
-}
-
-/* Hide scrollbar */
-.no-scrollbar::-webkit-scrollbar {
-    display: none;
-}
-.no-scrollbar {
-    -ms-overflow-style: none;
-    scrollbar-width: none;
+::-webkit-scrollbar-thumb:hover {
+    background: var(--brand-color);
 }
 
 /* Animations */
@@ -96,4 +45,13 @@ input:focus {
 
 .animate-fade-in {
     animation: fadeIn 0.6s ease-out forwards;
+}
+
+@keyframes float {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-20px); }
+}
+
+.animate-float {
+    animation: float 6s ease-in-out infinite;
 }

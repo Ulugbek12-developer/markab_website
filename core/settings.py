@@ -23,9 +23,10 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = 'django-insecure-94nng-4qh43jq4!n+&clw=-zz81z5+)x+!+zq^t-qn&scmq0kh'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = True # O'zingiz tekshirib olishingiz uchun hozircha True qoldiramiz
 
-ALLOWED_HOSTS = ['*']
+ALLOWED_HOSTS = ['markabelectronica.pythonanywhere.com', 'localhost', '127.0.0.1']
+
 
 
 # Application definition
